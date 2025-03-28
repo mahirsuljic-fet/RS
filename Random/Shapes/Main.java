@@ -5,7 +5,7 @@ public class Main {
                 new Circle(5),
                 new Triangle(1, 3, 5, 2, 4, 6),
                 new Rectangle(2, 4),
-                new Circle(8)
+                new Circle(3)
         };
 
         for (Shape shape : shapes) {

@@ -33,4 +33,12 @@ public class Circle extends Shape implements Drawable {
             System.out.println();
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Circle circle)
+            return this.radius == circle.radius;
+
+        return false;
+    }
 }

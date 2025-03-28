@@ -42,4 +42,12 @@ public class Rectangle extends Shape implements Drawable {
             System.out.println();
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Rectangle rectangle)
+            return this.width == rectangle.width && this.height == rectangle.height;
+
+        return false;
+    }
 }

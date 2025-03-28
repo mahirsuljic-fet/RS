@@ -60,4 +60,12 @@ public class Triangle extends Shape {
     public double circumference() {
         return a.distance(b) + b.distance(c) + c.distance(a);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Triangle triangle)
+            return this.a.equals(triangle.a) && this.b.equals(triangle.b) && this.c.equals(triangle.c);
+
+        return false;
+    }
 }
