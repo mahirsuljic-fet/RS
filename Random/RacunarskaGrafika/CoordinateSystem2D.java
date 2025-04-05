@@ -9,6 +9,8 @@ public class CoordinateSystem2D implements Transform {
     private double maxY;
     private double granularityX;
     private double granularityY;
+    private boolean showMatrices;
+    private boolean verticalNotation;
 
     private static final double DEFAULT_GRANULARITY = 0.25;
     private static final double DEFAULT_GRANULARITY_X = DEFAULT_GRANULARITY / 2;
@@ -42,6 +44,36 @@ public class CoordinateSystem2D implements Transform {
         maxX = width;
         minY = -height;
         maxY = height;
+        showMatrices = false;
+        verticalNotation = false;
+    }
+
+    public void showTransformMatrices() {
+        showMatrices = true;
+    }
+
+    public void hideTransformMatrices() {
+        showMatrices = false;
+    }
+
+    public void toggleShowTransformMatrices() {
+        showMatrices = !showMatrices;
+    }
+
+    // Pri ispisivanju matrica koje se koriste pri transformacijama koristi se sljedeca notacija:
+    // ┏ 1 x 0 ┓┏ x ┓
+    // ┃ y 1 0 ┃┃ y ┃
+    // ┗ 0 0 1 ┛┗ 1 ┛
+    public void useVerticalNotation() {
+        verticalNotation = true;
+    }
+
+    // Pri ispisivanju matrica koje se koriste pri transformacijama koristi se sljedeca notacija:
+    //          ┏ 1 y 0 ┓
+    // [ x y 1 ]┃ x 1 0 ┃
+    //          ┗ 0 0 1 ┛
+    public void useHorizontalNotation() {
+        verticalNotation = false;
     }
 
     public void setGranularityX(double granularityX) {
@@ -335,6 +367,16 @@ public class CoordinateSystem2D implements Transform {
 
     @Override
     public void translate(double x, double y) {
+        if (showMatrices) {
+            SquareMatrix transformMatrix = Transform.TranslateSystemMatrix2D(x, y);
+
+            if (!verticalNotation) {
+                transformMatrix.transpose();
+            }
+
+            System.out.println("Translating system to (" + x + ", " + y + ") using matrix:\n" + transformMatrix);
+        }
+
         minX = 0;
         minY = 0;
         maxX = 0;
@@ -348,6 +390,16 @@ public class CoordinateSystem2D implements Transform {
 
     @Override
     public void rotate(double angle) {
+        if (showMatrices) {
+            SquareMatrix transformMatrix = Transform.RotateSystemMatrix2D(angle);
+
+            if (!verticalNotation) {
+                transformMatrix.transpose();
+            }
+
+            System.out.println("Rotating system by " + angle + "° using matrix:\n" + transformMatrix);
+        }
+
         minX = 0;
         minY = 0;
         maxX = 0;
@@ -361,6 +413,16 @@ public class CoordinateSystem2D implements Transform {
 
     @Override
     public void scale(double x, double y) {
+        if (showMatrices) {
+            SquareMatrix transformMatrix = Transform.ScaleSystemMatrix2D(x, y);
+
+            if (!verticalNotation) {
+                transformMatrix.transpose();
+            }
+
+            System.out.println("Scaling system by (" + x + ", " + y + ") using matrix:\n" + transformMatrix);
+        }
+
         minX = 0;
         minY = 0;
         maxX = 0;
@@ -374,6 +436,16 @@ public class CoordinateSystem2D implements Transform {
 
     @Override
     public void shear(double x, double y) {
+        if (showMatrices) {
+            SquareMatrix transformMatrix = Transform.ShearSystemMatrix2D(x, y);
+
+            if (!verticalNotation) {
+                transformMatrix.transpose();
+            }
+
+            System.out.println("Shearing system by (" + x + ", " + y + ") using matrix:\n" + transformMatrix);
+        }
+
         minX = 0;
         minY = 0;
         maxX = 0;
