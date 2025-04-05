@@ -335,6 +335,7 @@ public class CoordinateSystem2D implements Transform {
 
         for (Point point : points) {
             point.rotate(-angle);
+            System.out.println(point.getSymbol() + " -> " + "(" + point.position().x() + ", " + point.position().y() + ")");
             updateMinMax(point);
         }
     }
@@ -363,6 +364,22 @@ public class CoordinateSystem2D implements Transform {
             point.shear(-x, -y);
             updateMinMax(point);
         }
+    }
+
+    public void translatePoints(double x, double y) {
+        translate(-x, -y);
+    }
+
+    public void rotatePoints(double angle) {
+        rotate(-angle);
+    }
+
+    public void scalePoints(double x, double y) {
+        scale(x, y);
+    }
+
+    public void shearPoints(double x, double y) {
+        shear(-x, -y);
     }
 }
 
