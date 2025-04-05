@@ -149,10 +149,30 @@ public class CoordinateSystem2D implements Transform {
         System.out.print(this);
     }
 
-    public void printPoints() {
+    public void printVectors() {
         System.out.println("Points (" + points.size() + "):");
         for (Point point : points) {
             System.out.print(point.getSymbol() + " " + point.position().transposeCopy());
+        }
+    }
+
+    public void printPoints() {
+        System.out.println("Points (" + points.size() + "):");
+        for (Point point : points) {
+            String symbol = point.getSymbol();
+            double x = point.position().getX();
+            double y = point.position().getY();
+            System.out.printf("%s (% .2f, % .2f)\n", symbol, x, y);
+        }
+    }
+
+    public void printPointsDetailed() {
+        System.out.println("Points (" + points.size() + "):");
+        for (Point point : points) {
+            String symbol = point.getSymbol();
+            double x = point.position().getX();
+            double y = point.position().getY();
+            System.out.printf("%s (% .15f, % .15f)\n", symbol, x, y);
         }
     }
 
@@ -335,7 +355,6 @@ public class CoordinateSystem2D implements Transform {
 
         for (Point point : points) {
             point.rotate(-angle);
-            System.out.println(point.getSymbol() + " -> " + "(" + point.position().x() + ", " + point.position().y() + ")");
             updateMinMax(point);
         }
     }
