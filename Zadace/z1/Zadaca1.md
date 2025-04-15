@@ -151,3 +151,6 @@ Time se dobija ispis `9 9 6`.
 
 ### 1.6
 https://github.com/mahirsuljic-fet/RS/blob/b4b5b6b8781c7a8f31283ffaf64c000ca7320b7c/Zadace/z1/z1_6.java#L1-L149
+
+# Problem 2
+https://github.com/mahirsuljic-fet/RS/blob/9a4a27577c4c7ceb18e8e7919171672636c4a387/Zadace/z1/z2.java#L1-L146
