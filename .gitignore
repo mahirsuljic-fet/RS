@@ -1,5 +1,3 @@
 .gitignore
 *.class
 ./*.java
-./Testing/
-./Universal.java
